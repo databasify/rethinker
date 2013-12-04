@@ -1,4 +1,4 @@
-module Rethinker::Document::Persistance
+module Rethinker::Document::Persistence
   extend ActiveSupport::Concern
 
   included do

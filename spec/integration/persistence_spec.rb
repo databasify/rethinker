@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Rethinker persistance' do
+describe 'Rethinker persistence' do
   before { load_simple_document }
 
   let!(:doc) { SimpleDocument.create(:field1 => 'hello', :field2 => 'world') }
