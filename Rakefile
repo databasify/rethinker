@@ -17,4 +17,5 @@ task :build_docs do |t|
   sh "mv USAGE.rb.html index.html"
   sh "git add ."
   sh "git commit -m 'Build docs'" rescue nil
+  sh "open index.html"
 end
