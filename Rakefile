@@ -11,7 +11,7 @@ end
 task :default => :spec
 
 task :build_docs do |t|
-  sh "git merge master"
+  sh "git rebase master"
   sh "docco -c docs.css -o . USAGE.rb.md"
   sh "rm index.html" rescue nil
   sh "mv USAGE.rb.html index.html"
