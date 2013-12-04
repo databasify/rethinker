@@ -13,7 +13,7 @@ gem 'rethinker'
 Usage
 ------
 
-[See documentation](https://databasify.github.io/rethinker)
+[See documentation](http://databasify.github.io/rethinker)
 
 Features
 ---------
