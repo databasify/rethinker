@@ -41,6 +41,12 @@ describe 'NoBrainer persistance' do
     doc.field1.should == 2
   end
 
+  it 'reloads' do
+    doc.field2 = 'brave world'
+    doc.reload.should be_a(SimpleDocument)
+    doc.field2.should == 'world'
+  end
+
   it 'deletes' do
     doc.delete.should == true
     SimpleDocument.find(doc.id).should == nil
