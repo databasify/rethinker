@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "NoBrainer serialization" do
+describe "Rethinker serialization" do
   before { load_simple_document }
   before { SimpleDocument.disable_timestamps }
 

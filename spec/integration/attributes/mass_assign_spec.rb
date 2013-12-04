@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-if NoBrainer.rails3?
-  describe NoBrainer do
+if Rethinker.rails3?
+  describe Rethinker do
     before { load_simple_document }
 
     before do

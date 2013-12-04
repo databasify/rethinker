@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe NoBrainer do
+describe Rethinker do
   before { load_simple_document }
 
   let!(:doc) { SimpleDocument.create(:field1 => 'hello', :field2 => 'world') }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "NoBrainer selection" do
+describe "Rethinker selection" do
   before { load_simple_document }
 
   context 'when the document does not exist' do
@@ -12,7 +12,7 @@ describe "NoBrainer selection" do
 
     describe 'find!' do
       it 'throws not found error' do
-        expect { SimpleDocument.find!('x') }.to raise_error(NoBrainer::Error::DocumentNotFound)
+        expect { SimpleDocument.find!('x') }.to raise_error(Rethinker::Error::DocumentNotFound)
       end
     end
   end

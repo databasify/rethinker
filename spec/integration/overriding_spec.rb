@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'NoBrainer layers' do
+describe 'Rethinker layers' do
   before { load_simple_document }
 
   context 'when overriding a field getter' do

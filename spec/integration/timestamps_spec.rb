@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "NoBrainer timestamps" do
+describe "Rethinker timestamps" do
   before { load_simple_document }
 
   context 'when using timestamps' do

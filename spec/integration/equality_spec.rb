@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'NoBrainer ==' do
+describe 'Rethinker ==' do
   before { load_simple_document }
 
   let(:doc1) { SimpleDocument.create(:field1 => 'ohai') }

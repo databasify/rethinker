@@ -1,27 +1,27 @@
-No Brainer
+Rethinker
 ===========
 
-No Brainer is a Ruby ORM for [RethinkDB](http://www.rethinkdb.com/).
+Rethinker is a Ruby ORM for [RethinkDB](http://www.rethinkdb.com/).
 
 Installation
 -------------
 
 ```ruby
-gem 'nobrainer'
+gem 'rethinker'
 ```
 
 Usage
 ------
 
-Here is a quick example of what NoBrainer can do:
+Here is a quick example of what Rethinker can do:
 
 ```ruby
-require 'nobrainer'
+require 'rethinker'
 
-NoBrainer.connect 'rethinkdb://localhost/blog'
+Rethinker.connect 'rethinkdb://localhost/blog'
 
 class Post
-  include NoBrainer::Document
+  include Rethinker::Document
 
   field :title
   field :body
@@ -32,7 +32,7 @@ class Post
 end
 
 class Comment
-  include NoBrainer::Document
+  include Rethinker::Document
 
   field :author
   field :body
@@ -46,7 +46,7 @@ class Comment
   end
 end
 
-NoBrainer.purge!
+Rethinker.purge!
 
 post = Post.create!(:title => 'ohai', :body  => 'yummy')
 
@@ -95,4 +95,4 @@ Contributors
 License
 --------
 
-See [`LICENSE.md`](https://github.com/nviennot/nobrainer/blob/master/LICENSE.md).
+See [`LICENSE.md`](https://github.com/databasify/rethinker/blob/master/LICENSE.md).

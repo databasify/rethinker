@@ -1,7 +1,7 @@
 module ModelsHelper
   def load_simple_document
     define_constant :SimpleDocument do
-      include NoBrainer::Document
+      include Rethinker::Document
 
       field :field1
       field :field2
@@ -11,7 +11,7 @@ module ModelsHelper
 
   def load_blog_models
     define_constant :Post do
-      include NoBrainer::Document
+      include Rethinker::Document
 
       field :title
       field :body
@@ -20,7 +20,7 @@ module ModelsHelper
     end
 
     define_constant :Comment do
-      include NoBrainer::Document
+      include Rethinker::Document
 
       field :author
       field :body
@@ -31,7 +31,7 @@ module ModelsHelper
 
   def load_polymorphic_models
     define_constant :Parent do
-      include NoBrainer::Document
+      include Rethinker::Document
       field :parent_field
     end
 

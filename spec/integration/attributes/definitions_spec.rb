@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe NoBrainer do
+describe Rethinker do
   before { load_polymorphic_models }
 
   describe 'fields' do

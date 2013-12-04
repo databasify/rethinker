@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'NoBrainer id' do
+describe 'Rethinker id' do
   before { load_simple_document }
 
   it 'can be used to order documents by time' do

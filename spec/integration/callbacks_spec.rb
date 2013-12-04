@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'NoBrainer callbacks' do
+describe 'Rethinker callbacks' do
   before { load_simple_document }
   before { record_callbacks(SimpleDocument) }
 

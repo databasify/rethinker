@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'NoBrainer persistance' do
+describe 'Rethinker persistance' do
   before { load_simple_document }
 
   let!(:doc) { SimpleDocument.create(:field1 => 'hello', :field2 => 'world') }
@@ -59,7 +59,7 @@ describe 'NoBrainer persistance' do
 
   context "when the document already exists" do
     it 'raises an error when creating' do
-      expect { SimpleDocument.create(:id => doc.id) }.to raise_error(NoBrainer::Error::DocumentNotSaved)
+      expect { SimpleDocument.create(:id => doc.id) }.to raise_error(Rethinker::Error::DocumentNotSaved)
     end
   end
 
@@ -67,11 +67,11 @@ describe 'NoBrainer persistance' do
     before { doc.destroy }
 
     it 'raises an error when updating' do
-      expect { doc.update_attributes(:field1 => 'oops') }.to raise_error(NoBrainer::Error::DocumentNotSaved)
+      expect { doc.update_attributes(:field1 => 'oops') }.to raise_error(Rethinker::Error::DocumentNotSaved)
     end
 
     it 'raises an error when destroying' do
-      expect { doc.destroy }.to raise_error(NoBrainer::Error::DocumentNotSaved)
+      expect { doc.destroy }.to raise_error(Rethinker::Error::DocumentNotSaved)
     end
   end
 end

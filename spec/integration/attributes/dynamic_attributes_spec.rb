@@ -1,10 +1,10 @@
 require 'spec_helper'
-require 'no_brainer/document/dynamic_attributes'
+require 'rethinker/document/dynamic_attributes'
 
-describe 'NoBrainer::Document::DynamicAttributes' do
+describe 'Rethinker::Document::DynamicAttributes' do
   before do 
     load_simple_document
-    SimpleDocument.send(:include, NoBrainer::Document::DynamicAttributes)
+    SimpleDocument.send(:include, Rethinker::Document::DynamicAttributes)
   end
 
   let!(:doc) { SimpleDocument.create(dynamic_field1: 'hello') }
