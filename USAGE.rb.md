@@ -3,7 +3,7 @@
 
 **Source:** [github.com/databasify/rethinker](https://github.com/databasify/rethinker)
 
-<small>Based on [NoBrainer](https://github.com/nviennot/nobrainer).</small>
+<small>Based on [NoBrainer](https://github.com/nviennot/nobrainer)</small>
 
     .
 
