@@ -76,6 +76,7 @@ Features
 * Autogeneration of ID, MongoDB style
 * Creation of database and tables on demand
 * Attributes accessors (`attr_accessor`)
+* Dynamic attributes
 * Validation support, expected behavior with `save!`, `save`, etc. (uniqueness validation still in development)
 * Validatation with create, update, save, and destroy callbacks.
 * `find`, `create`, `save`, `update_attributes`, `destroy` (`*.find` vs. `find!`).
