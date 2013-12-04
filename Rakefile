@@ -15,5 +15,5 @@ task :build_docs do |t|
   sh "rm index.html" rescue nil
   sh "mv USAGE.rb.html index.html"
   sh "git add ."
-  sh "git commit -m 'Build docs'"
+  sh "git commit -m 'Build docs'" rescue nil
 end
