@@ -1,7 +1,7 @@
 # Rethinker
 ## A Ruby ORM for RethinkDB
 
-[github.com/databasify/rethinker](https://github.com/databasify/rethinker)
+**Source:** [github.com/databasify/rethinker](https://github.com/databasify/rethinker)
 
 <small>Based on [NoBrainer](https://github.com/nviennot/nobrainer).</small>
 
