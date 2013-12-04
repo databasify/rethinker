@@ -95,4 +95,9 @@ Contributors
 License
 --------
 
+Copyright © 2013 Databasify
+
+Rethinker is a fork of NoBrainer 
+Copyright © 2012 Nicolas Viennot
+
 See [`LICENSE.md`](https://github.com/databasify/rethinker/blob/master/LICENSE.md).
