@@ -244,25 +244,6 @@ post.comments.first[<span class="string">'author_status'</span>]
             
         </li>
         
-        
-        <li id="section-13">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
-              </div>
-              <p>Rethinker handles regex as a condition.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>post.comments.create(<span class="symbol">:author</span> =&gt; <span class="string">'dude'</span>, <span class="symbol">:body</span> =&gt; <span class="string">'hello'</span>)
-post.comments.create(<span class="symbol">:author</span> =&gt; <span class="string">'dude'</span>, <span class="symbol">:body</span> =&gt; <span class="string">'ohai'</span>)
-
-post.comments.where(<span class="symbol">:body</span> =&gt; <span class="regexp">/^h/</span>).map{|comment| comment.body } <span class="comment"># =&gt; ["hello"]</span>
-post.comments.where(<span class="symbol">:body</span> =&gt; <span class="regexp">/h/</span>).map{|comment| comment.body } <span class="comment"># =&gt; ["ohai", "hello"]</span></pre></div></div>
-            
-        </li>
-        
     </ul>
   </div>
 </body>
