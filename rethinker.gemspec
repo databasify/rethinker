@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Rethinker::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Toby Marsden"]
-  s.email       = ["toby@toby.org.uk"]
+  s.email       = ["toby@databasify.com"]
   s.homepage    = "http://github.com/databasify/rethinker"
   s.summary     = "ORM for RethinkDB"
   s.description = "ORM for RethinkDB"
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "activemodel", ">= 3.2.0", "< 5"
   s.add_dependency "middleware",  "~> 0.1.0"
 
-  s.files        = Dir["lib/**/*"] + ['README.md'] + ['LICENSE.md']
+  s.files        = Dir["lib/**/*"] + ['README.md'] + ['USAGE.rb.md'] + ['LICENSE.md']
   s.require_path = 'lib'
   s.has_rdoc     = false
 end
