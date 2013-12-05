@@ -49,7 +49,7 @@ describe 'where' do
   context 'when passing decorated symbols' do
   end
 
-  context 'when passing a regex as a condition' do
+  context 'when passing a regex as a condition', pending: true do
     it 'can filter using that regex /h/' do
       SimpleDocument.where(:field1 => /h/).count.should == 3
     end

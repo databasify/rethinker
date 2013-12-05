@@ -1,6 +1,6 @@
 module Rethinker::Selection::Count
   def count
-    chain(query.count).run
+    chain(Rethinker::Criterion.new(:count)).run
   end
 
   def empty?

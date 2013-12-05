@@ -99,10 +99,3 @@ Note that setters and getters are *not* created, so you need to access dynamic f
     post.comments.first['author_status']
      => 'Space Cadet'
 
-Rethinker handles regex as a condition.
-
-    post.comments.create(:author => 'dude', :body => 'hello')
-    post.comments.create(:author => 'dude', :body => 'ohai')
-
-    post.comments.where(:body => /^h/).map{|comment| comment.body } # => ["hello"]
-    post.comments.where(:body => /h/).map{|comment| comment.body } # => ["ohai", "hello"]

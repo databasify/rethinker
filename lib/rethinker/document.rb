@@ -3,6 +3,6 @@ module Rethinker::Document
   extend Rethinker::Autoload
 
   autoload_and_include :Core, :InjectionLayer, :Attributes, :Id, :Relation,
-                       :Persistance, :Serialization, :Selection, :Validation, :Polymorphic,
+                       :Persistence, :Serialization, :Selection, :Validation, :Polymorphic,
                        :Timestamps
 end

@@ -1,6 +1,6 @@
 module Rethinker::Selection::Delete
   def delete
-    chain(query.delete).run
+    chain(Rethinker::Criterion.new(:delete)).run
   end
 
   def destroy

@@ -23,7 +23,7 @@ describe 'scope' do
   context 'when the scope is defined as a scope' do
     before do
       SimpleDocument.class_eval do
-        scope :haz_cheeseburger, where(:field1 => 'ohai')
+        scope :haz_cheeseburger, -> { where(:field1 => 'ohai') }
       end
     end
 

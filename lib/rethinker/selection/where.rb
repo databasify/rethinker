@@ -1,19 +1,11 @@
 module Rethinker::Selection::Where
   def where(*args, &block)
-    options = args.extract_options!.dup
-    regexp_filters = extract_regexp!(options)
-    default_option = options.select { |k,v| k == :default }
+    #options = args.extract_options!.dup
+    #default_option = options.select { |k,v| k == :default }
 
-    filtered_query = query.filter(*args, options, &block)
-
-    if !regexp_filters.empty?
-      filtered_query = filtered_query.filter(default_option) do |doc|
-        regexp_filters.map    { |field, regexp| doc[field].match(regexp) }
-                      .reduce { |a,b| a & b }
-      end
-    end
-
-    chain filtered_query
+    # TODO: :default option
+    criterion = Rethinker::Criterion.new(:filter, args, &block)
+    chain criterion
   end
 
   private
