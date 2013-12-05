@@ -2,12 +2,12 @@ module Rethinker::Document::Selection
   extend ActiveSupport::Concern
 
   def selector
-    @selector ||= self.class.selector_for(id)
+    self.class.selector_for(id)
   end
 
   module ClassMethods
     def all
-      sel = Rethinker::Selection.new(table, :klass => self)
+      sel = Rethinker::Selection.new(Rethinker::Criterion.new(:table, table_name), :klass => self)
 
       unless is_root_class?
         # TODO use this: sel = sel.where(:_type.in(descendants_type_values))
@@ -23,7 +23,7 @@ module Rethinker::Document::Selection
 
     def scope(name, selection)
       singleton_class.class_eval do
-        define_method(name) { selection }
+        define_method(name) { |*args| selection.call(*args) }
       end
     end
 
@@ -31,7 +31,7 @@ module Rethinker::Document::Selection
 
     def selector_for(id)
       # TODO Pass primary key if not default
-      Rethinker::Selection.new(table.get(id), :klass => self)
+      Rethinker::Selection.new([Rethinker::Criterion.new(:table, table_name), Rethinker::Criterion.new(:get, id)], :klass => self)
     end
 
     # XXX this doesn't have the same semantics as

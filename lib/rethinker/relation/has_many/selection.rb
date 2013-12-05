@@ -5,7 +5,7 @@ class Rethinker::Relation::HasMany::Selection < Rethinker::Selection
   def initialize(parent_instance, relation)
     self.relation = relation
     self.parent_instance = parent_instance
-    super children_klass.where(foreign_key => parent_instance.id)
+    super children_klass.where(foreign_key => parent_instance.id).criteria, klass: children_klass
   end
 
   def <<(child)

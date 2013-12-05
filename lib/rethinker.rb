@@ -11,7 +11,7 @@ module Rethinker
   require 'rethinker/autoload'
   extend Rethinker::Autoload
 
-  autoload :Document, :Connection, :Database, :Error, :QueryRunner, :Selection, :Relation
+  autoload :Document, :Connection, :Database, :Error, :QueryRunner, :Selection, :Relation, :Criterion
   require 'rethinker/document/dynamic_attributes'
 
   class << self

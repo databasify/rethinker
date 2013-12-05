@@ -1,21 +1,20 @@
 module Rethinker::Selection::First
   def first
-    get_one(:asc)
+    self.context[:order] = :normal
+    get_one
   end
 
   def last
-    raise 'last does not work with a custom ordering. ' +
-          'please fix and Make a pull request' if ordered?
-    get_one(:desc)
+    self.context[:order] = :reverse
+    get_one
   end
 
   private
 
-  def get_one(order)
+  def get_one
     klass.ensure_table! # needed as soon as we get a Query_Result
-
-    sel = ordered? ? self : order_by(:id => order)
-    attrs = sel.limit(1).run.first
+    order_by(:id) unless ordered?
+    attrs = chain(Rethinker::Criterion.new(:limit, 1)).run.first
     klass.new_from_db(attrs)
   end
 end
