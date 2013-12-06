@@ -45,36 +45,5 @@ describe 'where' do
       SimpleDocument.where(:field_new => nil).count.should == 1
     end
   end
-
-  context 'when passing decorated symbols' do
-  end
-
-  context 'when passing a regex as a condition', pending: true do
-    it 'can filter using that regex /h/' do
-      SimpleDocument.where(:field1 => /h/).count.should == 3
-    end
-
-    it 'can filter using that regex /^h/' do
-      SimpleDocument.where(:field1 => /^h/).count.should == 2
-    end
-
-    it 'can filter using that regex with a chained where clause' do
-      SimpleDocument.where(:field1 => /h/).where(:field1 => 'ohai').count.should == 1
-    end
-
-    it 'can filter using that regex with a chained where clause in alternate order' do
-      SimpleDocument.where(:field1 => 'ohai').where(:field1 => /h/).count.should == 1
-    end
-
-    it 'can filter using that regex and normal syntax combined' do
-      SimpleDocument.create(:field2 => 'sayonara')
-      SimpleDocument.where(:field1 => 'hola').first.update_attributes(:field2 => 'sayonara')
-      SimpleDocument.where(:field1 => /h/, :field2 => 'sayonara').count.should == 1
-      SimpleDocument.where(:field1 => /o/, :field2 => /o/).count.should == 1
-    end
-
-    it 'should only find documents that match the regex' do
-      SimpleDocument.where(:field1 => /x/).count.should == 0
-    end
-  end
+  
 end
