@@ -3,3 +3,4 @@ Gemfile.lock
 .rbenv*
 .gitignore
 rethinkdb_data/*
+*.gem

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "rethinker"
   s.version     = Rethinker::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Toby Marsden"]
+  s.authors     = ["Databasify"]
   s.email       = ["toby@databasify.com"]
   s.homepage    = "http://github.com/databasify/rethinker"
   s.summary     = "ORM for RethinkDB"
