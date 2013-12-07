@@ -8,16 +8,4 @@ module Rethinker::Selection::Where
     chain criterion
   end
 
-  private
-
-  def extract_regexp!(options)
-    regexp_filters = {}
-    options.each do |k,v|
-      if v.is_a?(Regexp)
-        options.delete(k)
-        regexp_filters[k] = v.inspect[1..-2]
-      end
-    end
-    regexp_filters
-  end
 end
