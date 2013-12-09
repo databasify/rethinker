@@ -29,6 +29,24 @@ module ModelsHelper
     end
   end
 
+  def load_embedded_models
+    define_constant :ApiKey do
+      include Rethinker::EmbeddedDocument
+      embedded_in :account
+
+      field :key
+    end
+
+    define_constant :Account do
+      include Rethinker::Document
+      embeds_many :api_keys
+      validates_with(Rethinker::Document::Validation::AssociatedValidator, _merge_attributes([:api_keys]))
+
+
+      field :name
+    end
+  end
+
   def load_polymorphic_models
     define_constant :Parent do
       include Rethinker::Document

@@ -23,6 +23,7 @@ module Rethinker::Document::Validation
       def #{method}!(*args)
         #{method}(*args) or raise Rethinker::Error::DocumentInvalid, errors
       end
+
     RUBY
   end
 
@@ -57,6 +58,20 @@ module Rethinker::Document::Validation
 
     def exclude_document(finder, document)
       finder.where{|doc| doc["id"].ne(document.attributes["id"])}
+    end
+  end
+
+  class AssociatedValidator < ActiveModel::EachValidator
+
+    def validate_each(document, attribute, value)
+      valid = Array.wrap(value.to_a).collect do |doc|
+        if doc.nil?
+          true
+        else
+          doc.valid?
+        end
+      end.all?
+      document.errors.add(attribute, :invalid, options) unless valid
     end
   end
 end

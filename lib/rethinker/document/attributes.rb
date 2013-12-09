@@ -5,7 +5,7 @@ module Rethinker::Document::Attributes
     if Rethinker.rails3?
       include ActiveModel::MassAssignmentSecurity
     end
-    attr_accessor :attributes
+    #attr_accessor :attributes
 
     # Not using class_attribute because we want to
     # use our custom logic
@@ -15,6 +15,7 @@ module Rethinker::Document::Attributes
 
   def initialize(attrs={}, options={})
     super
+    @attributes = {}
     assign_attributes(attrs, options.reverse_merge(:pristine => true))
   end
 
@@ -53,14 +54,34 @@ module Rethinker::Document::Attributes
       end
       attrs.each do |k,v| 
         if respond_to?("#{k}=")
-          __send__("#{k}=", v)
+          __send__("#{k}=", v) unless is_embedded_relation?(k)
         else 
-          attributes[k.to_s] = v
+          attributes[k.to_s] = v unless is_embedded_relation?(k)
         end
       end
     end
+
+    # Handle embedded relations
+    attrs.each do |k,v|
+      if is_embedded_relation?(k)
+        __send__("#{k.to_s.singularize}_attributes=", v)
+      end
+    end
+
   end
   alias_method :attributes=, :assign_attributes
+
+  def is_embedded_relation?(relation_name)
+    self.class.embedded_relations.has_key?(relation_name.to_sym)
+  end
+
+  def attributes
+    embedded_attributes = {}
+    self.class.embedded_relations.each do |name, relation|
+      embedded_attributes[relation.children_name.to_s] = self.send("#{relation.children_name.to_s.singularize}_attributes")
+    end
+    @attributes.merge!(embedded_attributes)
+  end
 
   # TODO test that thing
   def inspect
