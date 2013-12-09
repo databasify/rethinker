@@ -3,6 +3,14 @@ module Rethinker::Document::Validation
   include ActiveModel::Validations
   include ActiveModel::Validations::Callbacks
 
+  included do
+    class << self
+      def validates_associated(*associations)
+        validates_with(AssociatedValidator, _merge_attributes(associations))
+      end
+    end
+  end
+
   def save(options={})
     options = options.reverse_merge(:validate => true)
 
@@ -62,7 +70,6 @@ module Rethinker::Document::Validation
   end
 
   class AssociatedValidator < ActiveModel::EachValidator
-
     def validate_each(document, attribute, value)
       valid = Array.wrap(value.to_a).collect do |doc|
         if doc.nil?

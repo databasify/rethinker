@@ -40,7 +40,7 @@ module ModelsHelper
     define_constant :Account do
       include Rethinker::Document
       embeds_many :api_keys
-      validates_with(Rethinker::Document::Validation::AssociatedValidator, _merge_attributes([:api_keys]))
+      validates_associated :api_keys
 
 
       field :name
