@@ -34,6 +34,10 @@ module ModelsHelper
       include Rethinker::EmbeddedDocument
       embedded_in :account
 
+      def raise_error
+        raise StandardError
+      end
+
       field :key
     end
 
@@ -41,7 +45,6 @@ module ModelsHelper
       include Rethinker::Document
       embeds_many :api_keys
       validates_associated :api_keys
-
 
       field :name
     end

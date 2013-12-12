@@ -26,6 +26,13 @@ describe "count" do
 
       SimpleDocument.where(:field1 => 'ohai').count.should == 2
     end
+
+    it 'knows whether the document(s) exist' do
+      SimpleDocument.create(:field1 => 'ohai')
+
+      SimpleDocument.where(:field1 => 'ohai').exists?.should be_true
+      SimpleDocument.where(:field1 => 'world').exists?.should be_false
+    end  
   end
 
   context 'when using polymorphism' do

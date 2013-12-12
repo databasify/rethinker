@@ -31,6 +31,15 @@ describe 'embeds_many' do
     end
   end
 
+  context 'when saving parent' do
+    it 'runs before_validation callbacks on children' do
+      ApiKey.before_validation :raise_error
+      expect { account.api_keys.new; account.save }.
+          to raise_error
+    end
+  end
+
+
   context 'when using =' do
     it 'destroys, and persists elements' do
       account.api_keys.new

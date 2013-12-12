@@ -48,6 +48,14 @@ describe 'Rethinker callbacks' do
         SimpleDocument.callbacks.should == [:before_destroy, :after_destroy]
       end
     end
+
+    context 'when validating' do
+      it 'fires the proper callbacks' do
+        SimpleDocument.callbacks.clear
+        doc.valid?
+        SimpleDocument.callbacks.should == [:before_validation, :after_validation]
+      end
+    end
   end
 
   context 'when a before_ callback returns false' do

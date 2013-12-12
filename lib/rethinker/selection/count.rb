@@ -10,4 +10,6 @@ module Rethinker::Selection::Count
   def any?
     !empty?
   end
+  alias :exists? :any?
+
 end
