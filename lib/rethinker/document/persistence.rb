@@ -26,7 +26,7 @@ module Rethinker::Document::Persistence
 
   def _create
     run_callbacks :create do
-      result = Rethinker.run { self.table.insert(attributes) }
+      result = Rethinker.run { self.rethinkdb_table.insert(attributes) }
       self.id ||= result['generated_keys'].first
       @new_record = false
       true

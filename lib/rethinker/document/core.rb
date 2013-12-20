@@ -17,11 +17,11 @@ module Rethinker::Document::Core
 
   def initialize(attrs={}, options={}); end
 
-  def table
+  def rethinkdb_table
     if self.respond_to?(:table_name)
       @table ||= RethinkDB::RQL.new.table(table_name).freeze
     else
-      self.class.table
+      self.class.rethinkdb_table
     end
   end
 
@@ -32,7 +32,7 @@ module Rethinker::Document::Core
 
     # Even though we are using class variables, it's threads-safe.
     # It's still racy, but the race is harmless.
-    def table
+    def rethinkdb_table
       root_class.class_eval do
         @table ||= RethinkDB::RQL.new.table(table_name).freeze
       end

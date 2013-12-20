@@ -1,6 +1,7 @@
 module Rethinker::Selection::OrderBy
 
   def order_by(*rules)
+    return self if rules.flatten.empty?
     rules = Hash[*rules.map{|i| i.is_a?(Hash) ? i.to_a.flatten : [i, :asc]}.flatten]
     criterion = Rethinker::Criterion.new(:order_by, OrderByRules.new(rules))
     chain criterion
