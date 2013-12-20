@@ -29,6 +29,29 @@ module ModelsHelper
     end
   end
 
+  def load_custom_table_models
+    define_constant :Article do
+      include Rethinker::Document
+
+      field :title
+      field :body
+
+      def comments_table_name
+        "witterings"
+      end
+
+    end
+
+    define_constant :ArticleComment do
+      include Rethinker::Document
+
+      field :author
+      field :body
+
+      belongs_to :article
+    end
+  end
+
   def load_embedded_models
     define_constant :ApiKey do
       include Rethinker::EmbeddedDocument
@@ -38,6 +61,8 @@ module ModelsHelper
         raise StandardError
       end
 
+      field :label
+      field :client
       field :key
     end
 

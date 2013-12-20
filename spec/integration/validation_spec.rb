@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Rethinker callbacks' do
+describe 'Rethinker validations' do
   before { load_simple_document }
 
   before { SimpleDocument.validates :field1, :presence => true }

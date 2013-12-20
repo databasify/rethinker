@@ -11,7 +11,19 @@ module Rethinker::Document::Core
     extend ActiveModel::Translation
   end
 
+  def embedded?
+    self.class.ancestors.include?(Rethinker::EmbeddedDocument)
+  end
+
   def initialize(attrs={}, options={}); end
+
+  def table
+    if self.respond_to?(:table_name)
+      @table ||= RethinkDB::RQL.new.table(table_name).freeze
+    else
+      self.class.table
+    end
+  end
 
   module ClassMethods
     def table_name

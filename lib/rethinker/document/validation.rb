@@ -47,14 +47,28 @@ module Rethinker::Document::Validation
     #
     # @return [ Boolean ] true if the attribute is unique.
     def validate_each(document, attribute, value)
+      is_unique = if document.embedded?
+        check_embedded_uniqueness(document, attribute, value)
+      else
+        check_uniqueness(document, attribute, value)
+      end
+      document.errors.add(attribute, 'is already taken') unless is_unique
+      is_unique
+    end
+
+    def check_uniqueness(document, attribute, value)
       finder = document.root_class.where(attribute => value)
       finder = apply_scopes(finder, document)
       finder = exclude_document(finder, document) if document.persisted?
-      is_unique = finder.count == 0
-      unless is_unique
-        document.errors.add(attribute, 'is already taken')
+      finder.count == 0
+    end
+
+    def check_embedded_uniqueness(document, attribute, value)
+      found = document.siblings.select{|sibling| sibling.attributes[attribute.to_s] == value}
+      Array.wrap(options[:scope]).each do |scope_item|
+        found = found.select{|sibling| sibling.attributes[scope_item.to_s] == document.attributes[scope_item.to_s]}
       end
-      is_unique
+      found.reject{|sibling| sibling == document}.count == 0
     end
 
     def apply_scopes(finder, document)

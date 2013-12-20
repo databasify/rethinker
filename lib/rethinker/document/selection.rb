@@ -2,10 +2,21 @@ module Rethinker::Document::Selection
   extend ActiveSupport::Concern
 
   def selector
-    self.class.selector_for(id)
+    if self.respond_to?(:table_name)
+      return self.class.with_table_name(table_name).get(id)
+    else
+      return self.class.selector_for(id)
+    end
   end
 
   module ClassMethods
+
+    def with_table_name(custom_table_name, context = nil)
+      custom_table_name ||= self.table_name
+      custom_table_name = custom_table_name.call(context) if custom_table_name.is_a?(Proc)
+      Rethinker::Selection.new(Rethinker::Criterion.new(:table, custom_table_name), :klass => self)
+    end
+
     def all
       sel = Rethinker::Selection.new(Rethinker::Criterion.new(:table, table_name), :klass => self)
 
@@ -27,7 +38,7 @@ module Rethinker::Document::Selection
       end
     end
 
-    delegate :count, :where, :order_by, :first, :last, :to => :all
+    delegate :count, :where, :order_by, :first, :last, :find_by, :to => :all
 
     def selector_for(id)
       # TODO Pass primary key if not default

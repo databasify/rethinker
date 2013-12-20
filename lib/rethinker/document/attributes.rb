@@ -64,7 +64,7 @@ module Rethinker::Document::Attributes
     # Handle embedded relations
     attrs.each do |k,v|
       if is_embedded_relation?(k)
-        __send__("#{k.to_s.singularize}_attributes=", v)
+        __send__("#{k.to_s}_attributes=", v)
       end
     end
 
@@ -78,7 +78,7 @@ module Rethinker::Document::Attributes
   def attributes
     embedded_attributes = {}
     self.class.embedded_relations.each do |name, relation|
-      embedded_attributes[relation.children_name.to_s] = self.send("#{relation.children_name.to_s.singularize}_attributes")
+      embedded_attributes[relation.children_name.to_s] = self.send("#{relation.children_name.to_s}_attributes")
     end
     @attributes.merge!(embedded_attributes)
   end

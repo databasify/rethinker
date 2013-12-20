@@ -31,6 +31,17 @@ describe 'embeds_many' do
     end
   end
 
+  context 'when destroying a child' do
+    it 'persists elements' do
+      2.times { account.api_keys << ApiKey.new }
+      account.api_keys.count.should == 2
+      account.save
+      key_to_destroy = account.api_keys.last
+      key_to_destroy.destroy.should == true
+      account.api_keys.count.should == 1
+    end
+  end
+
   context 'when saving parent' do
     it 'runs before_validation callbacks on children' do
       ApiKey.before_validation :raise_error
@@ -50,6 +61,14 @@ describe 'embeds_many' do
       account.save
       account.reload
       account.api_keys.count.should == 2
+    end
+  end
+
+  context 'when assigning a parent' do
+    it 'adds the child to the parent\'s array of children' do
+      api_key = ApiKey.new
+      api_key.account = account
+      account.api_keys.count.should == 1
     end
   end
 

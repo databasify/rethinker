@@ -83,4 +83,80 @@ describe 'has_many' do
       Post.find(post.id).comments.first.body.should == 'ohai'
     end
   end
+
+  context 'when specifying a static custom table name' do
+
+    before do
+      load_custom_table_models
+      Article.has_many :article_comments, table_name: "witterings"
+      ArticleComment.send(:define_method, :table_name) do
+        "witterings"
+      end
+    end
+
+    let(:article) { Article.create }
+
+    context 'when calling create' do
+      it 'creates a child' do
+        comment = article.article_comments.create(:body => 'ohai')
+        Article.find(article.id).article_comments.first.should == comment
+        Article.find(article.id).article_comments.first.body.should == 'ohai'
+      end
+    end
+
+    context 'when appending' do
+      it 'persists elements' do
+        article.article_comments << ArticleComment.new
+        article.article_comments << ArticleComment.create
+        article.article_comments.count.should == 2
+
+        article.reload
+        ArticleComment.create(:article => article)
+        article.article_comments.count.should == 3
+      end
+    end
+
+    context 'when finding' do
+      it 'finds a document' do
+        comment = article.article_comments.create(:body => 'ohai')
+        Article.find(article.id).article_comments.find(comment.id).should == comment
+      end
+    end
+
+  end
+
+  context 'when specifying a dynamic custom table name' do
+
+    before do
+      load_custom_table_models
+      Article.has_many :article_comments, table_name: lambda {|article| article.comments_table_name }
+      ArticleComment.send(:define_method, :table_name) do
+        "witterings"
+      end
+    end
+
+    let(:article) { Article.create }
+
+    context 'when calling create' do
+      it 'creates a child' do
+        comment = article.article_comments.create(:body => 'ohai')
+        Article.find(article.id).article_comments.first.should == comment
+        Article.find(article.id).article_comments.first.body.should == 'ohai'
+      end
+    end
+
+    context 'when appending' do
+      it 'persists elements' do
+        article.article_comments << ArticleComment.new
+        article.article_comments << ArticleComment.create
+        article.article_comments.count.should == 2
+
+        article.reload
+        ArticleComment.create(:article => article)
+        article.article_comments.count.should == 3
+      end
+    end
+
+  end
+
 end

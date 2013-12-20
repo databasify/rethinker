@@ -5,7 +5,7 @@ class Rethinker::Relation::HasMany::Selection < Rethinker::Selection
   def initialize(parent_instance, relation)
     self.relation = relation
     self.parent_instance = parent_instance
-    super children_klass.where(foreign_key => parent_instance.id).criteria, klass: children_klass
+    super children_klass.with_table_name(relation.options[:table_name], parent_instance).where(foreign_key => parent_instance.id).criteria, klass: children_klass
   end
 
   def <<(child)
@@ -16,6 +16,7 @@ class Rethinker::Relation::HasMany::Selection < Rethinker::Selection
   def build(attrs={})
     children_klass.new(attrs.merge(foreign_key => parent_instance.id))
   end
+  alias :new :build
 
   def create(*args)
     build(*args).tap { |doc| doc.save }
@@ -24,4 +25,15 @@ class Rethinker::Relation::HasMany::Selection < Rethinker::Selection
   def create!(*args)
     build(*args).tap { |doc| doc.save! }
   end
+
+  def find(id)
+    where(id: id).first
+  end
+
+  def find!(id)
+    find(id).tap do |doc|
+      doc or raise Rethinker::Error::DocumentNotFound, "#{children_klass} id #{id} not found"
+    end
+  end
+
 end
