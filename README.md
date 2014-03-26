@@ -46,4 +46,6 @@ Copyright © 2013 Databasify
 
 Rethinker is a fork of [NoBrainer](https://github.com/nviennot/nobrainer), copyright © 2012 Nicolas Viennot
 
+Rethinker is licensed under the MIT license, and was forked from NoBrainer before the latter switched to the LGPL. 
+
 See [`LICENSE.md`](https://github.com/databasify/rethinker/blob/master/LICENSE.md).
